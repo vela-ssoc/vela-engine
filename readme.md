@@ -35,7 +35,6 @@ info:
   metadata:
     aaa: 123
     abc: 123
-    bbb: 123
 
   tags: cve,cve2022,redirect,u5cms,cms,process
 

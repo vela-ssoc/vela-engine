@@ -1,10 +1,10 @@
 package engine
 
 import (
-	"github.com/vela-ssoc/vela-kit/vela"
 	"github.com/vela-ssoc/vela-engine/template"
-	"github.com/vela-ssoc/vela-kit/execpt"
+	"github.com/vela-ssoc/vela-kit/exception"
 	"github.com/vela-ssoc/vela-kit/lua"
+	"github.com/vela-ssoc/vela-kit/vela"
 	vswitch "github.com/vela-ssoc/vela-switch"
 	"path/filepath"
 )
@@ -44,7 +44,7 @@ func NewEngineLoadL(L *lua.LState) int {
 	e := &Engine{
 		co:    xEnv.Clone(L),
 		vsh:   vswitch.NewL(L),
-		catch: execpt.New(),
+		catch: exception.New(),
 	}
 
 	if info.IsZip() {

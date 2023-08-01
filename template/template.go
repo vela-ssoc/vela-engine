@@ -6,7 +6,7 @@ import (
 	cond "github.com/vela-ssoc/vela-cond"
 	"github.com/vela-ssoc/vela-engine/header"
 	"github.com/vela-ssoc/vela-engine/match"
-	"github.com/vela-ssoc/vela-kit/execpt"
+	"github.com/vela-ssoc/vela-kit/exception"
 	"github.com/vela-ssoc/vela-kit/lua"
 	"github.com/vela-ssoc/vela-kit/xreflect"
 	"gopkg.in/yaml.v3"
@@ -107,7 +107,7 @@ func (tmpl *Template) Decoder(r io.Reader) error {
 }
 
 func (tmpl *Template) Call(v interface{}) *Context {
-	errs := execpt.New()
+	errs := exception.New()
 	ctx := tmpl.context(v, tmpl.co)
 	val := xreflect.ToLValue(v, tmpl.co)
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/vela-ssoc/vela-engine/template"
 	"github.com/vela-ssoc/vela-kit/auxlib"
-	"github.com/vela-ssoc/vela-kit/execpt"
+	"github.com/vela-ssoc/vela-kit/exception"
 	"github.com/vela-ssoc/vela-kit/lua"
 	vswitch "github.com/vela-ssoc/vela-switch"
 )
@@ -85,7 +85,7 @@ func NewEngine(L *lua.LState) *Engine {
 	e := &Engine{
 		co:    xEnv.Clone(L),
 		vsh:   vswitch.NewL(L),
-		catch: execpt.New(),
+		catch: exception.New(),
 	}
 
 	val := L.Get(1)

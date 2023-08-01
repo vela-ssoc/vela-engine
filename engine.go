@@ -3,7 +3,7 @@ package engine
 import (
 	"github.com/vela-ssoc/vela-engine/header"
 	"github.com/vela-ssoc/vela-engine/template"
-	"github.com/vela-ssoc/vela-kit/execpt"
+	"github.com/vela-ssoc/vela-kit/exception"
 	"github.com/vela-ssoc/vela-kit/lua"
 	vswitch "github.com/vela-ssoc/vela-switch"
 	"path/filepath"
@@ -11,7 +11,7 @@ import (
 )
 
 type Engine struct {
-	catch *execpt.Cause
+	catch *exception.Cause
 	co    *lua.LState
 	vsh   *vswitch.Switch
 	tags  []string
