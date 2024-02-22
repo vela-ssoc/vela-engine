@@ -1,9 +1,8 @@
 package template
 
 import (
-	auxlib2 "github.com/vela-ssoc/vela-kit/auxlib"
 	"github.com/vela-ssoc/vela-kit/lua"
-	"github.com/vela-ssoc/vela-kit/xreflect"
+	"github.com/vela-ssoc/vela-kit/strutil"
 )
 
 func (ctx *Context) String() string                         { return "" }
@@ -29,7 +28,7 @@ func (ctx *Context) happyL(L *lua.LState) int {
 }
 
 func (ctx *Context) payloadL(L *lua.LState) int {
-	chunk := auxlib2.S2B(auxlib2.Format(L, 0))
+	chunk := strutil.S2B(strutil.Format(L, 0))
 	if len(ctx.payload) != 0 {
 		ctx.payload = append(ctx.payload, '\n')
 	}
@@ -86,7 +85,7 @@ func (ctx *Context) Index(L *lua.LState, key string) lua.LValue {
 	case "payload":
 		return lua.NewFunction(ctx.payloadL)
 	case "value":
-		return xreflect.ToLValue(ctx.data, L)
+		return lua.ToLValue(ctx.data)
 	case "match":
 		return lua.NewFunction(ctx.matchL)
 	}

@@ -8,7 +8,7 @@ import (
 	"github.com/vela-ssoc/vela-engine/match"
 	"github.com/vela-ssoc/vela-kit/exception"
 	"github.com/vela-ssoc/vela-kit/lua"
-	"github.com/vela-ssoc/vela-kit/xreflect"
+	"github.com/vela-ssoc/vela-kit/reflectx"
 	"gopkg.in/yaml.v3"
 	"io"
 	"os"
@@ -109,7 +109,7 @@ func (tmpl *Template) Decoder(r io.Reader) error {
 func (tmpl *Template) Call(v interface{}) *Context {
 	errs := exception.New()
 	ctx := tmpl.context(v, tmpl.co)
-	val := xreflect.ToLValue(v, tmpl.co)
+	val := reflectx.ToLValue(v, tmpl.co)
 
 	if tmpl.before != nil {
 		errs.Try("before", xEnv.Call(tmpl.Coroutine(), tmpl.before, ctx, val))

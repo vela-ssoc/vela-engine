@@ -23,6 +23,7 @@ func (e *Engine) withL(L *lua.LState) int {
 		return 0
 	}
 
+	L.NewUserData()
 	for i := 0; i < n; i++ {
 		ctx := e.templates[i].Call(template.NaN)
 		e.vsh.Do(ctx)

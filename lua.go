@@ -33,7 +33,7 @@ engine.with(fb)
 
 */
 
-func NewEngineLoadL(L *lua.LState) int {
+func NewEngineAttachL(L *lua.LState) int {
 	name := L.CheckString(1)
 	info, err := xEnv.Third(name)
 	if err != nil {
@@ -68,7 +68,7 @@ func WithEnv(env vela.Environment) {
 	template.WithEnv(env)
 	kv := lua.NewUserKV()
 	kv.Set("feedback", lua.NewFunction(NewFeedbackL))
-	kv.Set("load", lua.NewFunction(NewEngineLoadL))
+	kv.Set("attach", lua.NewFunction(NewEngineAttachL))
 	xEnv.Set("engine", lua.NewExport("vela.engine.export",
 		lua.WithTable(kv),
 		lua.WithFunc(NewEngineL)),
